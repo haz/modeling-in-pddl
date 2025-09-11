@@ -37,9 +37,16 @@ def fetch(formalism, example):
                     continue
                 else:
                     print("Overwriting file.")
+
+            # If fn doesn't have an extension, add .pddl
+            if '.' not in fn:
+                fn += '.pddl'
             print(f"Writing file {fn}...")
             with open(fn, 'w') as f:
                 f.write(content)
+
+            # Make it read-and-write for all
+            os.chmod(fn, 0o666)
 
 
 
